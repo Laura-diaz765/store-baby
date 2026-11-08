@@ -69,7 +69,7 @@ input, select { min-height: 46px; padding: 10px 12px; border: 1px solid #cbd8e9;
 .gift-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(37, 67, 111, .12); }
 .gift-image { display: grid; height: 180px; place-items: center; overflow: hidden; background: linear-gradient(135deg, #f8fbff, #eaf2ff); color: var(--blue); font-size: .85rem; text-align: center; }
 .gift-image.no-image, .admin-thumb.no-image { color: var(--muted); }
-.gift-image img { display: block; width: 100%; height: 100%; padding: 4px; object-fit: contain; object-position: center; }
+.gift-image img { display: block; width: 100%; height: 100%; min-width: 0; min-height: 0; padding: 4px; object-fit: contain; object-position: center; }
 .gift-info { display: grid; flex: 1; gap: 12px; padding: 14px; }
 .gift-name { margin: 0; color: var(--navy); font-size: 1rem; line-height: 1.4; }
 .gift-stock { margin: 5px 0 0; color: var(--muted); font-size: .85rem; }
