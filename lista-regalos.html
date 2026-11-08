@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#eef5ff">
+<title>Baby Shower Martín | Lista de regalitos</title>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-view="guest">
+<main class="page">
+  <header class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Misión especial · Baby shower Martín</p>
+      <h1>¡Bienvenido a la lista de regalitos!</h1>
+      <p>Escoge el detalle que quieras llevar; así todos encontramos el regalo perfecto para el pequeño jefe. ¡Sin que se repita!</p>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <span class="sparkle one">✦</span><span class="sparkle two">✧</span>
+      <img src="assets/4foto.png" alt="">
+    </div>
+  </header>
+
+  <aside class="team-banner" aria-label="El equipo del pequeño jefe">
+    <div><h2>¡El equipo del pequeño jefe!</h2><p>Todos listos para esta misión especial.</p></div>
+    <img src="assets/3foto.png" alt="Tres pequeños amigos del jefe en pañales">
+  </aside>
+
+  <section class="panel" id="guest-view" aria-label="Lista de regalos">
+    <div class="welcome">
+      <div><h2 id="welcome-heading">¡Puedes llevar alguno de estos detallitos!</h2><p id="welcome-copy">Escoge lo que piensas darle a Martín. Los regalos que ya le llevarán desaparecen de la lista. Importante, si le quieres dar a martín algo que no se encuentre en la lista, hazlo, esto se hace con el propósito de dar algunas ideas y que los regalos no sean repetidos.<br><b>Si escogiste un detalle y no era el que querías ve a tu historial y liberalo.</b></p></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-text"><span id="progress-label">Regalos seleccionados</span><span id="progress-count">0</span></div>
+      <div class="progress-track" role="progressbar" aria-label="Regalos reservados" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+    <div class="guest-content-layout">
+      <section class="guest-gifts" aria-labelledby="gifts-heading">
+        <div class="section-heading"><h2 class="section-title" id="gifts-heading">Disponibles para la misión</h2></div>
+        <div class="gift-grid" id="gift-grid"></div>
+        <p class="privacy-note" id="sharing-note">Esta versión guarda los cambios en este navegador. Para que las reservas y cantidades se compartan con todos los asistentes y dispositivos, hace falta conectarla a una base de datos en línea.</p>
+      </section>
+      <aside class="guest-history" aria-labelledby="history-heading">
+        <div class="section-heading"><h2 class="section-title" id="history-heading">Mi historial de regalos</h2></div>
+        <div class="history-list" id="history-list"></div>
+      </aside>
+    </div>
+  </section>
+
+
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
