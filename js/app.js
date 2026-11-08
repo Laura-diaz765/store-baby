@@ -315,10 +315,9 @@ function renderGifts() {
     grid.append(element("div", "empty", "¡Misión cumplida! Por ahora todos los regalitos están apartados. Gracias por ayudar a la familia."));
     return;
   }
-  available.forEach((gift, index) => {
+  available.forEach((gift) => {
     const remaining = availableQuantity(gift);
     const card = element("article", "gift-card");
-    card.style.animationDelay = `${Math.min(index * 35, 245)}ms`;
     const imageBox = element("div", "gift-image");
     renderGiftVisual(imageBox, gift, gift.name);
     const info = element("div", "gift-info");
