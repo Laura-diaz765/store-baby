@@ -171,12 +171,16 @@ async function loadCloudData(includeImages = true) {
   if (!cloud || !cloudSession) return false;
   let giftsResult;
   let reservationsResult;
+  let imagesResult;
   try {
-    [giftsResult, reservationsResult] = await Promise.all([
+    [giftsResult, reservationsResult, imagesResult] = await Promise.all([
       cloud.from("gift_inventory")
         .select(includeImages ? "*" : "id,name,total_quantity,reserved_quantity,available_quantity")
         .order("name"),
-      cloud.from("reservations").select("*").order("created_at", { ascending: false })
+      cloud.from("reservations").select("*").order("created_at", { ascending: false }),
+      includeImages
+        ? cloud.from("gift_images").select("id,image_data")
+        : Promise.resolve({ data: null, error: null })
     ]);
   } catch (error) {
     cloudReady = false;
@@ -184,14 +188,22 @@ async function loadCloudData(includeImages = true) {
     render();
     return false;
   }
-  if (giftsResult.error || reservationsResult.error) {
-    const error = giftsResult.error || reservationsResult.error;
+  if (giftsResult.error || reservationsResult.error || imagesResult.error) {
+    const error = giftsResult.error || reservationsResult.error || imagesResult.error;
     cloudReady = false;
     cloudError = `No se pudo cargar la lista compartida: ${error.message}`;
     render();
     return false;
   }
-  state.products = giftsResult.data.map(giftFromCloud);
+  if (includeImages) {
+    const imagesByGiftId = new Map(imagesResult.data.map((gift) => [gift.id, gift.image_data || ""]));
+    state.products = giftsResult.data.map((gift) => giftFromCloud({
+      ...gift,
+      image_data: imagesByGiftId.get(gift.id) || ""
+    }));
+  } else {
+    state.products = giftsResult.data.map(giftFromCloud);
+  }
   state.reservations = reservationsResult.data.map(reservationFromCloud);
   cloudReady = true;
   cloudError = "";
